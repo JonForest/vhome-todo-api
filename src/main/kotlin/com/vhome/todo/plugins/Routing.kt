@@ -1,9 +1,11 @@
 package com.vhome.todo.plugins
 
+import com.vhome.todo.createTask
 import com.vhome.todo.models.Task
 import com.vhome.todo.fetchTasks
 import io.ktor.routing.*
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 
@@ -18,8 +20,8 @@ fun Application.configureRouting() {
         }
         post("/task") {
             val task = call.receive<Task>()
-            println(task)
-            call.respond(201)
+            val id = createTask(task)
+            call.respond(HttpStatusCode.Created, mapOf<String,Any>("id" to id))
         }
 
     }

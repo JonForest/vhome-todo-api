@@ -12,6 +12,7 @@ object TaskTable : Table<Nothing>("task", schema="tasks") {
     val id = int("id").primaryKey()
     val title = varchar("title")
     val detail = varchar("detail")
+    var dueDate = varchar("due_date") //  If I set this to type date, then it fails when I try to set with type mismatch
 }
 
 fun fetchTasks(): List<Task> {
@@ -20,12 +21,17 @@ fun fetchTasks(): List<Task> {
         Task(
             id = it[TaskTable.id],
             title = it[TaskTable.title] ?: "",
-            detail = it[TaskTable.detail] ?: ""
+            detail = it[TaskTable.detail] ?: "",
+            dueDate = it[TaskTable.dueDate]
         )
     }
     return tasks
 }
 
-fun createTask() {
-    //TODO
+fun createTask(task: Task): Int {
+    return database.insert(TaskTable) {
+        set(it.title, task.title)
+        set(it.detail, task.detail)
+        set(it.dueDate, task.dueDate)
+    }
 }
