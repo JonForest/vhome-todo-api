@@ -2,8 +2,7 @@ package com.vhome.todo.plugins
 
 import io.ktor.features.*
 import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
+import io.ktor.serialization.*
 
 fun Application.configureHTTP() {
     install(Compression) {
@@ -16,4 +15,10 @@ fun Application.configureHTTP() {
         }
     }
 
+}
+
+fun Application.configureSerialization() {
+    install(ContentNegotiation) {
+        json()
+    }
 }

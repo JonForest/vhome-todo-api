@@ -1,4 +1,2 @@
-* Add gitignore from sample repo
-* Create first commit and push
-* Transfer in the logic from my sample repo
-
+* Allow new / edited todos
+* Make the db connection as part of the env and update the Docker env

@@ -1,0 +1,10 @@
+GET http://127.0.0.1:8080/tasks
+###
+
+POST http://127.0.0.1:8080/task
+Content-Type: application/json
+
+{
+  "title": "Test task from API",
+  "detail": "A long description. No, longer than this"
+}
