@@ -8,3 +8,14 @@ Content-Type: application/json
   "title": "Test task from API",
   "detail": "A long description. No, longer than this"
 }
+###
+
+PUT http://127.0.0.1:8080/task/7
+Content-Type: application/json
+
+{
+  "id": 7,
+  "title": "Updated title",
+  "detail": "A shorter description",
+  "dueDate": "2021-10-26"
+}

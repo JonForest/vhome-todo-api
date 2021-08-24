@@ -12,7 +12,7 @@ object TaskTable : Table<Nothing>("task", schema="tasks") {
     val id = int("id").primaryKey()
     val title = varchar("title")
     val detail = varchar("detail")
-    var dueDate = varchar("due_date") //  If I set this to type date, then it fails when I try to set with type mismatch
+    var dueDate = date("due_date") //  If I set this to type date, then it fails when I try to set with type mismatch
 }
 
 fun fetchTasks(): List<Task> {
@@ -33,5 +33,18 @@ fun createTask(task: Task): Int {
         set(it.title, task.title)
         set(it.detail, task.detail)
         set(it.dueDate, task.dueDate)
+    }
+}
+
+fun updateTask(task: Task): Int {
+    if (task.id == null) throw Error("Invalid task passed to updateTask")
+
+    return database.update(TaskTable) {
+        set(it.title, task.title)
+        set(it.detail, task.detail)
+        set(it.dueDate, task.dueDate)
+        where {
+            it.id eq task.id!!
+        }
     }
 }
