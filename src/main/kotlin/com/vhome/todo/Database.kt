@@ -6,9 +6,13 @@ import org.ktorm.dsl.*
 import com.vhome.todo.models.*
 
 val database =
-    Database.connect("jdbc:postgresql://localhost:5432/vhome", user = "tasks_user", password = "tasks_password")
+    Database.connect(
+        "jdbc:postgresql://localhost:${dotenv["PG_PORT"]}/${dotenv["PG_DBNAME"]}",
+        user = dotenv["PG_USER"],
+        password = dotenv["PG_PASSWORD"]
+    )
 
-object TaskTable : Table<Nothing>("task", schema="tasks") {
+object TaskTable : Table<Nothing>("task", schema = "tasks") {
     val id = int("id").primaryKey()
     val title = varchar("title")
     val detail = varchar("detail")

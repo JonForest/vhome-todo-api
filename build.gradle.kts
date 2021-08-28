@@ -27,6 +27,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization:$ktor_version")
     implementation("org.ktorm:ktorm-core:$ktorm_version")
     implementation("org.postgresql:postgresql:$postgresql_version")
+    implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
 }
